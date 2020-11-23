@@ -1,0 +1,4 @@
+salvar as coleções no Postman
+
+clicar com o botão direito e ir em "Export" para
+criar um arquivo que vou precisar

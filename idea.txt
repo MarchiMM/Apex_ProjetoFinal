@@ -1,0 +1,24 @@
+TABELAS:
+
+Fabricante (nome, cnpj, endereço, cep, )
+
+Produto (descrição do produto (impressora, balança, etc), modelo, FKfabricante, )
+
+Cliente (nome, cnpj, data_nascimento, )
+
+Funcionario (nome, cpf, data_nascimento, cargo)
+
+Pedido (com status (em aberto, concluído), FKproduto, FKcliente, FKfuncionário, descrição do serviço,  
+valor do serviço, prazo, data do pedido, data de entrega do pedido (ficará em aberto se o funcionário 
+ainda não terminou o serviço), ) 
+
+Tributacao (com descrição do imposto, valor em porcentagem e dois date (para representar o período em que tal 
+valor de tributação ficará em aberto para determinado tipo de imposto. Ex: de 1 de janeiro até  29 de março o 
+imposto sobre determinado produto será de 5%; de 30 de março até 31 de dezembro será de 6%, etc), )
+
+
+
+FRONTEND:
+
+checkbox para fechar o pedido (que estará com status "em aberto")
+
