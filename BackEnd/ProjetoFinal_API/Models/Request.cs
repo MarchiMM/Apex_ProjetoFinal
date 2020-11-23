@@ -26,19 +26,24 @@ namespace ProjetoFinal_API.Models
 
         [Column(TypeName = "VARCHAR(800)")]
         [Required]
+        public string Order { get; set; }
+
+        [Column(TypeName = "VARCHAR(800)")]
+        [Required]
         public string ServiceDescription { get; set; }
 
         [ForeignKey("Taxation")]
         [Required]
         public int TaxationId { get; set; }
 
-        public Request(int id, char status, int clientId, int equipamentId, int employeeId, string serviceDescription, int taxationId)
+        public Request(int id, char status, int clientId, int equipamentId, int employeeId, string order, string serviceDescription, int taxationId)
         {
             this.Id = id;
             this.Status = status;
             this.ClientId = clientId;
             this.EquipamentId = equipamentId;
             this.EmployeeId = employeeId;
+            this.Order = order;
             this.ServiceDescription = serviceDescription;
             this.TaxationId = taxationId;
         }

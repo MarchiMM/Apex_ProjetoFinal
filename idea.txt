@@ -44,6 +44,7 @@ Request (Pedido)
     *FKClient
     *FKEquipament
     *FKEmployee
+    Order (Requisição)
     ServiceDescription (Descrição do serviço)
     *FKTaxation
 
@@ -53,3 +54,26 @@ FRONTEND:
 
 checkbox para fechar o pedido (que estará com status "em aberto")
 
+
+
+Este programa guardará informações de pessoas, clientes, funcionários, equipamentos e pedidos. É um programa que ser-
+virá uma empresa que faz manutenção em balanças, impressoras e computadores de outras empresas, como por exemplo de
+uma rede de supermercados.
+
+O objetivo principal é: abrir um pedido que um cliente requisitou; setar informações de quem é o cliente, quem é
+o funcionário encarregado do pedido, quais os serviços e valores de cada serviço e qual será o valor total do pedido.
+Os serviços vão variar entre "Hora técnica (manutenção), Peças novas instaladas, Deslocamento de equipamento, Limpeza
+de equipamento, etc", com seus respectivos valores.
+
+Para abrir e modificar um pedido, existirá três telas:
+1 - Abertura
+    Abertura do pedido com setação de informações
+
+2 - Detalhamento
+    Aqui o funcionário responsável irá escrever os serviços que ele fez e seus respectivos valores
+
+3 - Fechamento
+    Aqui o funcionário responsável irá fechar o pedido e o valor final do pedido, após ser somado os valores dos 
+    serviços e ser calculado com os valores de impostos, aparecerá.
+
+Para cadastrar as outras tabelas, terá telas de cadastro próprias para cada modelo.
