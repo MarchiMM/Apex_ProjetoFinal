@@ -1,20 +1,51 @@
-TABELAS:
+TABLES:
 
-Fabricante (nome, cnpj, endereço, cep, )
+'*' -> Symbolizes foreign keys (FKs)
 
-Produto (descrição do produto (impressora, balança, etc), modelo, FKfabricante, )
+Company (Empresa)
+    Name (Nome)
 
-Cliente (nome, cnpj, data_nascimento, )
+Person
+    Type (Tipo: Pessoa Física ou Pessoa Jurídica)
+        P : PhysicalPerson
+        L : LegalPerson
+    Name (Nome)
+    Cpf
+    Cnpj
+    *FKCompany (FKEmpresa)
+    Address (Endereço)
+    Phone_Number (Número de telefone)
+    E-mail
 
-Funcionario (nome, cpf, data_nascimento, cargo)
+Employee (Funcionário)
+    *FKPerson
+    Role (Cargo)
 
-Pedido (com status (em aberto, concluído), FKproduto, FKcliente, FKfuncionário, descrição do serviço,  
-valor do serviço, prazo, data do pedido, data de entrega do pedido (ficará em aberto se o funcionário 
-ainda não terminou o serviço), ) 
+Client (Cliente)
+    *FKPerson
+    Registration_Date (Data de cadastro)
 
-Tributacao (com descrição do imposto, valor em porcentagem e dois date (para representar o período em que tal 
-valor de tributação ficará em aberto para determinado tipo de imposto. Ex: de 1 de janeiro até  29 de março o 
-imposto sobre determinado produto será de 5%; de 30 de março até 31 de dezembro será de 6%, etc), )
+Equipament (Equipamento)
+    Type (Tipo)
+    Brand (Marca)
+    Model (Modelo)
+    SerialNumber (Número de Série)
+
+Taxation (Taxação)
+    TaxDescription (Descrição do Imposto)
+    Percentage (Porcentagem)
+    EffectiveDate (Data de vigência)
+    ExpirationDate (Data de expiração)
+
+Request (Pedido)
+    Status
+        O : Open
+        C : Closed
+    *FKClient
+    *FKEquipament
+    *FKEmployee
+    ServiceDescription (Descrição do serviço)
+    *FKTaxation
 
 
 
