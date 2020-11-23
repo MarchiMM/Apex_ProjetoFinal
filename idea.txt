@@ -6,9 +6,10 @@ Company (Empresa)
     Name (Nome)
 
 Person
-    Type (Tipo: Pessoa Física ou Pessoa Jurídica)
+    PersonType (Tipo de pessoa: Pessoa Física ou Pessoa Jurídica)
         P : PhysicalPerson
         L : LegalPerson
+    Type (Tipo: Cliente ou Funcionário)
     Name (Nome)
     Cpf
     Cnpj

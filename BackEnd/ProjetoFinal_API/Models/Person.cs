@@ -9,6 +9,11 @@ namespace ProjetoFinal_API.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Column(TypeName = "CHAR(1)")]
+        [Required]
+        public char PersonType { get; set; }
+
+        [Column(TypeName = "CHAR(1)")]
         [Required]
         public char Type { get; set; }
 
@@ -38,6 +43,7 @@ namespace ProjetoFinal_API.Models
 
         public Person(
             int id, 
+            char personType, 
             char type, 
             string name, 
             string cpf,
@@ -47,6 +53,7 @@ namespace ProjetoFinal_API.Models
         )
         {
             this.Id = id;
+            this.PersonType = personType;
             this.Type = type;
             this.Name = name;
             this.Cpf = cpf;
@@ -57,6 +64,7 @@ namespace ProjetoFinal_API.Models
 
         public Person(
             int id, 
+            char personType, 
             char type, 
             string name, 
             string cnpj,
@@ -67,6 +75,7 @@ namespace ProjetoFinal_API.Models
         )
         {
             this.Id = id;
+            this.PersonType = personType; 
             this.Type = type;
             this.Name = name;
             this.Cnpj = Cnpj;
