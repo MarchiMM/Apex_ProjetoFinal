@@ -11,11 +11,11 @@ namespace ProjetoFinal_API.Models
 
         [Column(TypeName = "CHAR(1)")]
         [Required]
-        public char PersonType { get; set; }
+        public char Type { get; set; }
 
         [Column(TypeName = "CHAR(1)")]
         [Required]
-        public char Type { get; set; }
+        public char PersonType { get; set; }
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required]
@@ -43,8 +43,8 @@ namespace ProjetoFinal_API.Models
 
         public Person(
             int id, 
-            char personType, 
             char type, 
+            char personType, 
             string name, 
             string cpf,
             string address,
@@ -53,8 +53,8 @@ namespace ProjetoFinal_API.Models
         )
         {
             this.Id = id;
-            this.PersonType = personType;
             this.Type = type;
+            this.PersonType = personType;
             this.Name = name;
             this.Cpf = cpf;
             this.Address = address;
@@ -64,8 +64,8 @@ namespace ProjetoFinal_API.Models
 
         public Person(
             int id, 
-            char personType, 
             char type, 
+            char personType, 
             string name, 
             string cnpj,
             int companyId,
@@ -75,8 +75,8 @@ namespace ProjetoFinal_API.Models
         )
         {
             this.Id = id;
-            this.PersonType = personType; 
             this.Type = type;
+            this.PersonType = personType; 
             this.Name = name;
             this.Cnpj = Cnpj;
             this.CompanyId = companyId;
