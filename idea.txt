@@ -18,14 +18,6 @@ Person
     Phone_Number (Número de telefone)
     E-mail
 
-Employee (Funcionário)
-    *FKPerson
-    Role (Cargo)
-
-Client (Cliente)
-    *FKPerson
-    Registration_Date (Data de cadastro)
-
 Equipament (Equipamento)
     Type (Tipo)
     Brand (Marca)
