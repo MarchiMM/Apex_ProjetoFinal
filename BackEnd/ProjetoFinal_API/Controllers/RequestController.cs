@@ -36,6 +36,12 @@ namespace ProjetoFinal_API.Controllers
             return this._context.Request.Where(r => r.Status == status).ToList();
         }
 
+        [HttpGet("personname={personname}")]
+        public IEnumerable<Request> GetByStatus(char status)
+        {
+            return this._context.Request.Where(r => r.Person.Name.Equals(personname)).ToList();
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody]Request request)
         {

@@ -17,6 +17,7 @@ namespace ProjetoFinal_API.Models
         [ForeignKey("Person")]
         [Required]
         public int PersonId { get; set; }
+        public Person Person { get; set; }
 
         [ForeignKey("Equipament")]
         [Required]
