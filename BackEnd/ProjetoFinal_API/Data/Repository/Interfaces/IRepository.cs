@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace ProjetoFinal_API.Data.Repository.Interfaces
 {
     public class IRepository
