@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoFinal_API.Context;
+using ProjetoFinal_API.Data;
 using ProjetoFinal_API.Models;
 
 namespace ProjetoFinal_API.Controllers
@@ -11,9 +11,9 @@ namespace ProjetoFinal_API.Controllers
 
     public class RequestController : ControllerBase
     {
-        private readonly ContextApp _context;
+        private readonly DataContext _context;
 
-        public RequestController(ContextApp context)
+        public RequestController(DataContext context)
         {
             this._context = context;
         }
@@ -37,9 +37,9 @@ namespace ProjetoFinal_API.Controllers
         }
 
         [HttpGet("personname={personname}")]
-        public IEnumerable<Request> GetByStatus(char status)
+        public IEnumerable<Request> GetByPersonName(char personName)
         {
-            return this._context.Request.Where(r => r.Person.Name.Equals(personname)).ToList();
+            return this._context.Request.Where(r => r.Person.Name.Equals(personName)).ToList();
         }
 
         [HttpPost]

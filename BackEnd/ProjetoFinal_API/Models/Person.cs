@@ -30,6 +30,8 @@ namespace ProjetoFinal_API.Models
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
 
+        public Company Company { get; set; }
+
         [Column(TypeName = "VARCHAR(100)")]
         [Required]
         public string Address { get; set; }

@@ -23,6 +23,8 @@ namespace ProjetoFinal_API.Models
         [Required]
         public int EquipamentId { get; set; }
 
+        public Equipament Equipament { get; set; }
+
         [Column(TypeName = "VARCHAR(800)")]
         [Required]
         public string Demand { get; set; }
@@ -32,6 +34,8 @@ namespace ProjetoFinal_API.Models
 
         [ForeignKey("Taxation")]
         public int TaxationId { get; set; }
+
+        public Taxation Taxation { get; set; }
 
         public Request(int id, char status, int personId, int equipamentId, string demand, string serviceDescription, int taxationId)
         {

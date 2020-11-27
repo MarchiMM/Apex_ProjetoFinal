@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProjetoFinal_API.Context;
+using ProjetoFinal_API.Data;
 
 namespace ProjetoFinal_API.Migrations
 {
-    [DbContext(typeof(ContextApp))]
+    [DbContext(typeof(DataContext))]
     [Migration("20201125145437_InitialMigration")]
     partial class InitialMigration
     {

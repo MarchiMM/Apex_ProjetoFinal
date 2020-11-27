@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoFinal_API.Data.Repository.Interfaces
 {
-    public class IRepository
+    public interface IRepository
     {
         void Add<T>(T entity) where T : class;
         void Update<T>(T entity) where T : class;

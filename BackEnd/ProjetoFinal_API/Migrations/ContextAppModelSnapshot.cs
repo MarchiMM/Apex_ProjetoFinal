@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProjetoFinal_API.Context;
+using ProjetoFinal_API.Data;
 
 namespace ProjetoFinal_API.Migrations
 {
-    [DbContext(typeof(ContextApp))]
-    partial class ContextAppModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DataContext))]
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProjetoFinal_API.Context;
+using ProjetoFinal_API.Data;
 
 namespace ProjetoFinal_API
 {
@@ -29,7 +29,7 @@ namespace ProjetoFinal_API
         {
             services.AddControllers();
 
-            services.AddDbContext<ContextApp>(
+            services.AddDbContext<DataContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("Connection")
                 )

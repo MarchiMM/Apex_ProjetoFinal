@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoFinal_API.Context;
+using ProjetoFinal_API.Data;
 using ProjetoFinal_API.Models;
 
 namespace ProjetoFinal_API.Controllers
@@ -10,9 +10,9 @@ namespace ProjetoFinal_API.Controllers
     [Route("[controller]")]
         public class EquipamentController : ControllerBase
     {
-        private readonly ContextApp _context;
+        private readonly DataContext _context;
 
-        public EquipamentController(ContextApp context)
+        public EquipamentController(DataContext context)
         {
             this._context = context;
         }
