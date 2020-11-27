@@ -10,7 +10,7 @@ using ProjetoFinal_API.Data;
 namespace ProjetoFinal_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201125145437_InitialMigration")]
+    [Migration("20201127213945_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,6 +105,8 @@ namespace ProjetoFinal_API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("Person");
                 });
 
@@ -137,6 +139,12 @@ namespace ProjetoFinal_API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EquipamentId");
+
+                    b.HasIndex("PersonId");
+
+                    b.HasIndex("TaxationId");
+
                     b.ToTable("Request");
                 });
 
@@ -163,6 +171,44 @@ namespace ProjetoFinal_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Taxation");
+                });
+
+            modelBuilder.Entity("ProjetoFinal_API.Models.Person", b =>
+                {
+                    b.HasOne("ProjetoFinal_API.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ProjetoFinal_API.Models.Request", b =>
+                {
+                    b.HasOne("ProjetoFinal_API.Models.Equipament", "Equipament")
+                        .WithMany()
+                        .HasForeignKey("EquipamentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoFinal_API.Models.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoFinal_API.Models.Taxation", "Taxation")
+                        .WithMany()
+                        .HasForeignKey("TaxationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Equipament");
+
+                    b.Navigation("Person");
+
+                    b.Navigation("Taxation");
                 });
 #pragma warning restore 612, 618
         }
