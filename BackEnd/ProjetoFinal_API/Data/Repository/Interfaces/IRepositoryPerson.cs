@@ -12,7 +12,7 @@ namespace ProjetoFinal_API.Data.Repository.Interfaces
         Task<Person[]> GetByNameAsync(string name, bool includeCompany);
         Task<Person> GetByCpfAsync(string cpf);
         Task<Person> GetByCnpjAsync(string cpf, bool includeCompany);
-        Task<Person[]> GetByCompanyIdAsync(string companyId);
+        Task<Person[]> GetByCompanyIdAsync(int companyId);
         Task<Person[]> GetByCompanyNameAsync(string companyName);
         // tentar utilizar funções do Repository Company
         /*

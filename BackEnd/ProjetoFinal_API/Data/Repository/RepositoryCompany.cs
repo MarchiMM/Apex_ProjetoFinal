@@ -1,24 +1,47 @@
+using System.Linq;
 using System.Threading.Tasks;
 using ProjetoFinal_API.Data.Repository.Interfaces;
 using ProjetoFinal_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjetoFinal_API.Data.Repository
 {
     public class RepositoryCompany : IRepositoryCompany
     {
-        public Task<Company[]> GetAllAsync()
+        private readonly DataContext _context;
+
+        public RepositoryCompany(DataContext context)
         {
-            throw new System.NotImplementedException();
+            this._context = context;
         }
 
-        public Task<Company> GetByCompanyName(string companyName, bool includePersons)
+        public async Task<Company[]> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            IQueryable<Company> query = _context.Company;
+            query = query.AsNoTracking().OrderBy(c => c.Id);
+            return await query.ToArrayAsync();
         }
 
-        public Task<Company> GetByIdAsync(int companyId, bool includePersons)
+        public async Task<Company> GetByIdAsync(int companyId, bool includePersons)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Company> query = _context.Company;
+            if (includePersons)
+            {
+                query = query.Include(c => c.Persons);
+            }
+            query = query.AsNoTracking().OrderBy(c => c.Id).Where(c => c.Id == companyId);
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Company> GetByCompanyName(string companyName, bool includePersons)
+        {
+            IQueryable<Company> query = _context.Company;
+            if (includePersons)
+            {
+                query = query.Include(c => c.Persons);
+            }
+            query = query.AsNoTracking().OrderBy(c => c.Id).Where(c => c.Name == companyName);
+            return await query.FirstOrDefaultAsync();
         }
     }
 }

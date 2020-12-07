@@ -1,6 +1,7 @@
 using System.Security.AccessControl;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace ProjetoFinal_API.Models
 {
@@ -17,13 +18,16 @@ namespace ProjetoFinal_API.Models
         [ForeignKey("Person")]
         [Required]
         public int PersonId { get; set; }
+
         public Person Person { get; set; }
+
+        public IEnumerable<Person> People { get; set; }
 
         [ForeignKey("Equipament")]
         [Required]
         public int EquipamentId { get; set; }
 
-        public Equipament Equipament { get; set; }
+        public IEnumerable<Equipament> Equipaments { get; set; }
 
         [Column(TypeName = "VARCHAR(800)")]
         [Required]
@@ -32,12 +36,7 @@ namespace ProjetoFinal_API.Models
         [Column(TypeName = "VARCHAR(800)")]
         public string ServiceDescription { get; set; }
 
-        [ForeignKey("Taxation")]
-        public int TaxationId { get; set; }
-
-        public Taxation Taxation { get; set; }
-
-        public Request(int id, char status, int personId, int equipamentId, string demand, string serviceDescription, int taxationId)
+        public Request(int id, char status, int personId, int equipamentId, string demand, string serviceDescription)
         {
             this.Id = id;
             this.Status = status;
@@ -45,7 +44,6 @@ namespace ProjetoFinal_API.Models
             this.EquipamentId = equipamentId;
             this.Demand = demand;
             this.ServiceDescription = serviceDescription;
-            this.TaxationId = taxationId;
         }
     }
 }

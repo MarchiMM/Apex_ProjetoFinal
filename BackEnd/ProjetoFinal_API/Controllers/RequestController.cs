@@ -30,10 +30,10 @@ namespace ProjetoFinal_API.Controllers
             return this._context.Request.FirstOrDefault(r => r.Id == id);
         }
 
-        [HttpGet("status={status}")]
-        public IEnumerable<Request> GetByStatus(char status)
+        [HttpGet("requeststatus={requestStatus}")]
+        public IEnumerable<Request> GetByStatus(char requestStatus)
         {
-            return this._context.Request.Where(r => r.Status == status).ToList();
+            return this._context.Request.Where(r => r.Status == requestStatus).ToList();
         }
 
         [HttpGet("personname={personname}")]

@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProjetoFinal_API.Data.Repository.Interfaces;
 using ProjetoFinal_API.Models;
 
@@ -6,54 +8,85 @@ namespace ProjetoFinal_API.Data.Repository
 {
     public class RepositoryRequest : IRepositoryRequest
     {
-        public Task<Request[]> GetAllAsync()
+        private readonly DataContext _context;
+
+        public RepositoryRequest(DataContext context)
         {
-            throw new System.NotImplementedException();
+            this._context = context;
         }
 
-        public Task<Request[]> GetByEquipamentBrandAsync(string equipamentBrand)
+        public async Task<Request[]> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id);
+            return await query.ToArrayAsync();
         }
 
-        public Task<Request> GetByEquipamentIdAsync(int equipamentId)
+        public async Task<Request[]> GetByEquipamentBrandAsync(string equipamentBrand)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipaments.Any(e => e.Brand == equipamentBrand));
+            return await query.ToArrayAsync();
         }
 
-        public Task<Request[]> GetByEquipamentModelAsync(string equipamentModel)
+        public async Task<Request[]> GetByEquipamentIdAsync(int equipamentId)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipaments.Any(e => e.Id == equipamentId));
+            return await query.ToArrayAsync();
         }
 
-        public Task<Request> GetByEquipamentSerialNumberlAsync(string equipamentSerialNumber)
+        public async Task<Request[]> GetByEquipamentModelAsync(string equipamentModel)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipaments.Any(e => e.Model == equipamentModel));
+            return await query.ToArrayAsync();
         }
 
-        public Task<Request[]> GetByEquipamentTypeAsync(string equipamentType)
+        public async Task<Request[]> GetByEquipamentSerialNumberlAsync(string equipamentSerialNumber)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipaments.Any(e => e.SerialNumber == equipamentSerialNumber));
+            return await query.ToArrayAsync();
         }
 
-        public Task<Request> GetByIdAsync(int companyId, bool includeCompany)
+        public async Task<Request[]> GetByEquipamentTypeAsync(string equipamentType)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipaments.Any(e => e.Type == equipamentType));
+            return await query.ToArrayAsync();
         }
 
-        public Task<Request> GetByPersonIdAsync(int personId)
+        public async Task<Request> GetByIdAsync(int requestId, bool includePerson)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            if (includePerson)
+            {
+                query = query.Include(r => r.Person);
+            }
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Id == requestId);
+            return await query.FirstOrDefaultAsync();
         }
 
-        public Task<Request> GetByPersonNameAsync(string personName)
+        public async Task<Request[]> GetByPersonIdAsync(int personId)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.People.Any(p => p.Id == personId));
+            return await query.ToArrayAsync();
         }
 
-        public Task<Request[]> GetByStatusAsync(char status)
+        public async Task<Request[]> GetByPersonNameAsync(string personName)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.People.Any(p => p.Name == personName));
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<Request[]> GetByStatusAsync(char status)
+        {
+            IQueryable<Request> query = _context.Request;
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Status == status);
+            return await query.ToArrayAsync();
         }
     }
 }

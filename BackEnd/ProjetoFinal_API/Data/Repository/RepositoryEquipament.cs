@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProjetoFinal_API.Data.Repository.Interfaces;
 using ProjetoFinal_API.Models;
 
@@ -6,34 +8,53 @@ namespace ProjetoFinal_API.Data.Repository
 {
     public class RepositoryEquipament : IRepositoryEquipament
     {
-        public Task<Equipament[]> GetAllAsync()
+        private readonly DataContext _context;
+
+        public RepositoryEquipament(DataContext context)
         {
-            throw new System.NotImplementedException();
+            this._context = context;
         }
 
-        public Task<Equipament[]> GetByBrandAsync(string brand)
+        public async Task<Equipament[]> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            IQueryable<Equipament> query = _context.Equipament;
+            query = query.AsNoTracking().OrderBy(e => e.Id);
+            return await query.ToArrayAsync();
         }
 
-        public Task<Equipament> GetByIdAsync(int companyId)
+        public async Task<Equipament[]> GetByBrandAsync(string brand)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Equipament> query = _context.Equipament;
+            query = query.AsNoTracking().OrderBy(e => e.Id).Where(e => e.Brand == brand);
+            return await query.ToArrayAsync();
         }
 
-        public Task<Equipament[]> GetByModelAsync(string model)
+        public async Task<Equipament> GetByIdAsync(int equipamentId)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Equipament> query = _context.Equipament;
+            query = query.AsNoTracking().OrderBy(e => e.Id).Where(e => e.Id == equipamentId);
+            return await query.FirstOrDefaultAsync();
         }
 
-        public Task<Equipament> GetBySerialNumberAsync(string serialNumber)
+        public async Task<Equipament[]> GetByModelAsync(string model)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Equipament> query = _context.Equipament;
+            query = query.AsNoTracking().OrderBy(e => e.Id).Where(e => e.Model == model);
+            return await query.ToArrayAsync();
         }
 
-        public Task<Equipament[]> GetByTypeAsync(string type)
+        public async Task<Equipament> GetBySerialNumberAsync(string serialNumber)
         {
-            throw new System.NotImplementedException();
+            IQueryable<Equipament> query = _context.Equipament;
+            query = query.AsNoTracking().OrderBy(e => e.Id).Where(e => e.SerialNumber == serialNumber);
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Equipament[]> GetByTypeAsync(string type)
+        {
+            IQueryable<Equipament> query = _context.Equipament;
+            query = query.AsNoTracking().OrderBy(e => e.Id).Where(e => e.Type == type);
+            return await query.ToArrayAsync();
         }
     }
 }
