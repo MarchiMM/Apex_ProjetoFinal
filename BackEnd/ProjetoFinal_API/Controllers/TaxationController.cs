@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoFinal_API.Data;
+using ProjetoFinal_API.Data.Repository.Interfaces;
 using ProjetoFinal_API.Models;
 
 namespace ProjetoFinal_API.Controllers
@@ -11,78 +10,105 @@ namespace ProjetoFinal_API.Controllers
     [Route("[controller]")]
     public class TaxationController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IRepository _repository;
+        private readonly IRepositoryTaxation _repositoryTaxation;
 
-        public TaxationController(DataContext context)
+        public TaxationController(IRepository repository, IRepositoryTaxation repositoryTaxation)
         {
-            this._context = context;
+            this._repository = repository;
+            this._repositoryTaxation = repositoryTaxation;
         }
 
         [HttpGet]
-        public IEnumerable<Taxation> Get()
-        {
-            return this._context.Taxation.ToList();
-        }
-
-        [HttpGet("id={id}")]
-        public Taxation GetById(int id)
-        {
-            return this._context.Taxation.FirstOrDefault(t => t.Id == id);
-        }
-
-        [HttpGet("taxdescription={taxDescription}")]
-        public Taxation GetByTaxDescription(string taxDescription)
-        {
-            return this._context.Taxation.FirstOrDefault(t => t.TaxDescription == taxDescription);
-        }
-
-        [HttpPost]
-        public IActionResult Post([FromBody]Taxation Taxation)
+        public async Task<IActionResult> Get()
         {
             try
             {
-                this._context.Taxation.Add(Taxation);
-                this._context.SaveChanges();
-
-                return Ok("Tax successfully registered.");
+                return Ok(
+                    await _repositoryTaxation.GetAllAsync()
+                );
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest($"When obtaining the taxations, an error occurred: {ex.Message}");
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Taxation taxation)
+        [HttpGet("id={taxationId}")]
+        public async Task<IActionResult> GetById(int taxationId)
         {
-            if (taxation.Id == id)
+            try
             {
-                this._context.Entry(taxation).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                this._context.SaveChanges();
-
-                return Ok("Registry updated.");
+                return Ok(
+                    await _repositoryTaxation.GetByIdAsync(taxationId)
+                );
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("The tax id is not equivalent.");
+                return BadRequest($"When obtaining the taxation by its id, an error occurred: {ex.Message}");
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpPost]
+        public async Task<IActionResult> Post(Taxation taxation)
         {
-            var taxation = this._context.Taxation.FirstOrDefault(c => c.Id == id);
-            if (taxation != null)
+            try
             {
-                this._context.Taxation.Remove(taxation);
-                this._context.SaveChanges();
+                _repository.Add(taxation);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(taxation);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When posting the taxation, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
+        }
 
-                return Ok("Registry removed.");
-            }
-            else
+        [HttpPut("id={taxationId}")]
+        public async Task<IActionResult> Put(int taxationId, Taxation taxation)
+        {
+            try
             {
-                return BadRequest("Tax not found.");
+                if (await _repositoryTaxation.GetByIdAsync(taxationId) == null)
+                {
+                    return NotFound();
+                }
+                _repository.Update(taxation);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(taxation);
+                }
             }
+            catch (Exception ex)
+            {
+                return BadRequest($"When updating the taxation, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
+        }
+
+        [HttpDelete("id={taxationId}")]
+        public async Task<IActionResult> Delete(int taxationId, Taxation taxation)
+        {
+            try
+            {
+                if (await _repositoryTaxation.GetByIdAsync(taxationId) == null)
+                {
+                    return NotFound();
+                }
+                _repository.Delete(taxation);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(new {message="Taxation removed successfully!"});
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When removing the taxation, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
         }
     }
 }

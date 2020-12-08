@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoFinal_API.Data;
 
 namespace ProjetoFinal_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201208003808_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,13 +50,6 @@ namespace ProjetoFinal_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Company");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Test"
-                        });
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Equipment", b =>
@@ -88,16 +83,6 @@ namespace ProjetoFinal_API.Migrations
                     b.HasIndex("RequestId");
 
                     b.ToTable("Equipment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Brand = "HP",
-                            Model = "Ink Sak",
-                            SerialNumber = "BIASYRTCBO2U3809R2U38R",
-                            Type = "Impressora"
-                        });
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Person", b =>
@@ -146,21 +131,6 @@ namespace ProjetoFinal_API.Migrations
                     b.HasIndex("RequestId");
 
                     b.ToTable("Person");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "casa do caraio",
-                            Cnpj = "",
-                            CompanyId = 1,
-                            Cpf = "12345678901",
-                            Email = "email@gmail.com",
-                            Name = "Thomas",
-                            PersonType = "P",
-                            PhoneNumber = "1242535",
-                            Type = "E"
-                        });
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Request", b =>
@@ -190,17 +160,6 @@ namespace ProjetoFinal_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Request");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Demand = "trocar a tinta",
-                            EquipmentId = 1,
-                            PersonId = 1,
-                            ServiceDescription = "tinta trocada - 2 pila",
-                            Status = "O"
-                        });
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Taxation", b =>

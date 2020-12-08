@@ -10,10 +10,10 @@ namespace ProjetoFinal_API.Data.Repository.Interfaces
         Task<Request[]> GetByStatusAsync(char status);
         Task<Request[]> GetByPersonIdAsync(int personId);
         Task<Request[]> GetByPersonNameAsync(string personName);
-        Task<Request[]> GetByEquipamentIdAsync(int equipamentId);
-        Task<Request[]> GetByEquipamentTypeAsync(string equipamentType);
-        Task<Request[]> GetByEquipamentBrandAsync(string equipamentBrand);
-        Task<Request[]> GetByEquipamentModelAsync(string equipamentModel);
-        Task<Request[]> GetByEquipamentSerialNumberlAsync(string equipamentSerialNumber);
+        Task<Request[]> GetByEquipmentIdAsync(int equipmentId);
+        Task<Request[]> GetByEquipmentTypeAsync(string equipmentType);
+        Task<Request[]> GetByEquipmentBrandAsync(string equipmentBrand);
+        Task<Request[]> GetByEquipmentModelAsync(string equipmentModel);
+        Task<Request[]> GetByEquipmentSerialNumberlAsync(string equipmentSerialNumber);
     }
 }

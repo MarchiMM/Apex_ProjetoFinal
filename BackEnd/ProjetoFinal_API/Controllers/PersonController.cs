@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoFinal_API.Data;
+using ProjetoFinal_API.Data.Repository.Interfaces;
 using ProjetoFinal_API.Models;
 
 namespace ProjetoFinal_API.Controllers
@@ -10,108 +10,210 @@ namespace ProjetoFinal_API.Controllers
     [Route("[controller]")]
     public class PersonController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IRepository _repository;
+        private readonly IRepositoryPerson _repositoryPerson;
 
-        public PersonController(DataContext context)
+        public PersonController(IRepository repository, IRepositoryPerson repositoryPerson)
         {
-            this._context = context;
+            this._repository = repository;
+            this._repositoryPerson = repositoryPerson;
         }
 
         [HttpGet]
-        public IEnumerable<Person> Get()
-        {
-            return this._context.Person.ToList();
-        }
-
-        [HttpGet("id={id}")]
-        public Person GetById(int id)
-        {
-            return this._context.Person.FirstOrDefault(p => p.Id == id);
-        }
-
-        [HttpGet("name={name}")]
-        public Person GetByName(string name)
-        {
-            return this._context.Person.FirstOrDefault(p => p.Name == name);
-        }
-
-        [HttpGet("type={type}")]
-        public IEnumerable<Person> GetByType(char type)
-        {
-            return this._context.Person.Where(p => p.Type == type).ToList();
-        }
-
-        [HttpGet("persontype={personType}")]
-        public IEnumerable<Person> GetByPersonType(char personType)
-        {
-            return this._context.Person.Where(p => p.Type == personType).ToList();
-        }
-
-        [HttpGet("cpf={cpf}")]
-        public Person GetByCpf(string cpf)
-        {
-            return this._context.Person.FirstOrDefault(p => p.Cpf == cpf);
-        }
-
-        [HttpGet("cnpj={cnpj}")]
-        public Person GetByCnpj(string cnpj)
-        {
-            return this._context.Person.FirstOrDefault(p => p.Cnpj == cnpj);
-        }
-
-        [HttpGet("companyname={companyId}")]
-        public IEnumerable<Person> GetByCompanyId(int companyId)
-        {
-            return this._context.Person.Where(p => p.CompanyId == companyId).ToList();
-        }
-
-        [HttpPost]
-        public IActionResult Post([FromBody]Person person)
+        public async Task<IActionResult> Get()
         {
             try
             {
-                this._context.Person.Add(person);
-                this._context.SaveChanges();
-
-                return Ok("Person successfully registered.");
+                return Ok(
+                    await _repositoryPerson.GetAllAsync()
+                );
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest($"When obtaining the people, an error occurred: {ex.Message}");
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Person person)
+        [HttpGet("id={personId}")]
+        public async Task<IActionResult> GetById(int personId)
         {
-            if (person.Id == id)
+            try
             {
-                this._context.Entry(person).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                this._context.SaveChanges();
-
-                return Ok("Registry updated.");
+                return Ok(
+                    await _repositoryPerson.GetByIdAsync(personId, includeCompany: true)
+                );
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("The Person id is not equivalent.");
+                return BadRequest($"When obtaining the person by its id, an error occurred: {ex.Message}");
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpGet("type={type}")]
+        public async Task<IActionResult> GetByType(char type)
         {
-            var person = this._context.Person.FirstOrDefault(c => c.Id == id);
-            if (person != null)
+            try
             {
-                this._context.Person.Remove(person);
-                this._context.SaveChanges();
+                return Ok(
+                    await _repositoryPerson.GetByTypeAsync(type)
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the people by their type, an error occurred: {ex.Message}");
+            }
+        }
 
-                return Ok("Registry removed.");
-            }
-            else
+        [HttpGet("persontype={personType}")]
+        public async Task<IActionResult> GetByPersonType(char personType)
+        {
+            try
             {
-                return BadRequest("Person not found.");
+                return Ok(
+                    await _repositoryPerson.GetByPersonTypeAsync(personType)
+                );
             }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the people by their person_type, an error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet("name={personName}")]
+        public async Task<IActionResult> GetByName(string personName)
+        {
+            try
+            {
+                return Ok(
+                    await _repositoryPerson.GetByNameAsync(personName, includeCompany: true)
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the person by its name, an error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet("cpf={personCpf}")]
+        public async Task<IActionResult> GetByCpf(string personCpf)
+        {
+            try
+            {
+                return Ok(
+                    await _repositoryPerson.GetByCpfAsync(personCpf)
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the person by its cpf, an error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet("cnpj={personCnpj}")]
+        public async Task<IActionResult> GetByCnpj(string personCnpj)
+        {
+            try
+            {
+                return Ok(
+                    await _repositoryPerson.GetByCnpjAsync(personCnpj, includeCompany: true)
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the person by its cnpj, an error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet("companyid={companyId}")]
+        public async Task<IActionResult> GetByCompanyId(int companyId)
+        {
+            try
+            {
+                return Ok(
+                    await _repositoryPerson.GetByCompanyIdAsync(companyId)
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the people by their company_id, an error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpGet("companyname={companyName}")]
+        public async Task<IActionResult> GetByCompanyName(string companyName)
+        {
+            try
+            {
+                return Ok(
+                    await _repositoryPerson.GetByCompanyNameAsync(companyName)
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the people by their company_name, an error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Person person)
+        {
+            try
+            {
+                _repository.Add(person);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(person);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When posting the person, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
+        }
+
+        [HttpPut("id={personId}")]
+        public async Task<IActionResult> Put(int personId, Person person)
+        {
+            try
+            {
+                if (await _repositoryPerson.GetByIdAsync(personId, includeCompany: false) == null)
+                {
+                    return NotFound();
+                }
+                _repository.Update(person);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(person);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When updating the person, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
+        }
+
+        [HttpDelete("id={personId}")]
+        public async Task<IActionResult> Delete(int personId, Person person)
+        {
+            try
+            {
+                if (await _repositoryPerson.GetByIdAsync(personId, includeCompany: false) == null)
+                {
+                    return NotFound();
+                }
+                _repository.Delete(person);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(new {message="Person removed successfully!"});
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When removing the person, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
         }
     }
 }

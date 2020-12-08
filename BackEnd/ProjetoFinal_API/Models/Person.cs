@@ -31,6 +31,7 @@ namespace ProjetoFinal_API.Models
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
 
+        [NotMapped]
         public Company Company { get; set; }
 
         public IEnumerable<Company> Companies { get; set; }
@@ -45,12 +46,16 @@ namespace ProjetoFinal_API.Models
         [Column(TypeName = "VARCHAR(60)")]
         public string Email { get; set; }
 
+        public Person() {}
+
         public Person(
             int id, 
             char type, 
             char personType, 
             string name, 
             string cpf,
+            string cnpj,
+            int companyId,
             string address,
             string phoneNumber,
             string email
@@ -61,28 +66,7 @@ namespace ProjetoFinal_API.Models
             this.PersonType = personType;
             this.Name = name;
             this.Cpf = cpf;
-            this.Address = address;
-            this.PhoneNumber = phoneNumber;
-            this.Email = email;
-        }
-
-        public Person(
-            int id, 
-            char type, 
-            char personType, 
-            string name, 
-            string cnpj,
-            int companyId,
-            string address,
-            string phoneNumber,
-            string email
-        )
-        {
-            this.Id = id;
-            this.Type = type;
-            this.PersonType = personType; 
-            this.Name = name;
-            this.Cnpj = Cnpj;
+            this.Cnpj = cnpj;
             this.CompanyId = companyId;
             this.Address = address;
             this.PhoneNumber = phoneNumber;

@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoFinal_API.Data;
+using ProjetoFinal_API.Data.Repository.Interfaces;
 using ProjetoFinal_API.Models;
 
 namespace ProjetoFinal_API.Controllers
@@ -10,78 +10,120 @@ namespace ProjetoFinal_API.Controllers
     [Route("[controller]")]
     public class CompanyController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IRepository _repository;
+        private readonly IRepositoryCompany _repositoryCompany;
 
-        public CompanyController(DataContext context)
+        public CompanyController(IRepository repository, IRepositoryCompany repositoryCompany)
         {
-            this._context = context;
+            this._repository = repository;
+            this._repositoryCompany = repositoryCompany;
         }
 
         [HttpGet]
-        public IEnumerable<Company> Get()
-        {
-            return this._context.Company.ToList();
-        }
-
-        [HttpGet("id={id}")]
-        public Company GetById(int id)
-        {
-            return this._context.Company.FirstOrDefault(c => c.Id == id);
-        }
-
-        [HttpGet("name={name}")]
-        public Company GetByName(string name)
-        {
-            return this._context.Company.FirstOrDefault(c => c.Name == name);
-        }
-
-        [HttpPost]
-        public IActionResult Post([FromBody]Company company)
+        public async Task<IActionResult> Get()
         {
             try
             {
-                this._context.Company.Add(company);
-                this._context.SaveChanges();
-
-                return Ok("Company successfully registered.");
+                return Ok(
+                    await _repositoryCompany.GetAllAsync()
+                );
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest($"When obtaining the companies, an error occurred: {ex.Message}");
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Company company)
+        [HttpGet("id={companyId}")]
+        public async Task<IActionResult> GetById(int companyId)
         {
-            if (company.Id == id)
+            try
             {
-                this._context.Entry(company).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                this._context.SaveChanges();
-
-                return Ok("Registry updated.");
+                return Ok(
+                    await _repositoryCompany.GetByIdAsync(companyId, includePeople: true)
+                );
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("The company id is not equivalent.");
+                return BadRequest($"When obtaining the company by its id, an error occurred: {ex.Message}");
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpGet("name={companyName}")]
+        public async Task<IActionResult> GetByName(string companyName)
         {
-            var company = this._context.Company.FirstOrDefault(c => c.Id == id);
-            if (company != null)
+            try
             {
-                this._context.Company.Remove(company);
-                this._context.SaveChanges();
+                return Ok(
+                    await _repositoryCompany.GetByCompanyName(companyName, includePeople: true)
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When obtaining the company by its name, an error occurred: {ex.Message}");
+            }
+        }
 
-                return Ok("Registry removed.");
-            }
-            else
+        [HttpPost]
+        public async Task<IActionResult> Post(Company company)
+        {
+            try
             {
-                return BadRequest("Company not found.");
+                _repository.Add(company);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(company);
+                }
             }
+            catch (Exception ex)
+            {
+                return BadRequest($"When posting the company, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
+        }
+
+        [HttpPut("id={companyId}")]
+        public async Task<IActionResult> Put(int companyId, Company company)
+        {
+            try
+            {
+                if (await _repositoryCompany.GetByIdAsync(companyId, includePeople: false) == null)
+                {
+                    return NotFound();
+                }
+                _repository.Update(company);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(company);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When updating the company, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
+        }
+
+        [HttpDelete("id={companyId}")]
+        public async Task<IActionResult> Delete(int companyId, Company company)
+        {
+            try
+            {
+                if (await _repositoryCompany.GetByIdAsync(companyId, includePeople: false) == null)
+                {
+                    return NotFound();
+                }
+                _repository.Delete(company);
+                if (await this._repository.SaveChangesAsync())
+                {
+                    return Ok(new {message="Company removed successfully!"});
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"When removing the company, an error occurred: {ex.Message}");
+            }
+            return BadRequest("An error ocurred!");
         }
     }
 }

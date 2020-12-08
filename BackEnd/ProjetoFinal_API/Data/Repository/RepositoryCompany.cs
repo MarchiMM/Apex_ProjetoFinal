@@ -22,23 +22,23 @@ namespace ProjetoFinal_API.Data.Repository
             return await query.ToArrayAsync();
         }
 
-        public async Task<Company> GetByIdAsync(int companyId, bool includePersons)
+        public async Task<Company> GetByIdAsync(int companyId, bool includePeople)
         {
             IQueryable<Company> query = _context.Company;
-            if (includePersons)
+            if (includePeople)
             {
-                query = query.Include(c => c.Persons);
+                query = query.Include(c => c.People);
             }
             query = query.AsNoTracking().OrderBy(c => c.Id).Where(c => c.Id == companyId);
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Company> GetByCompanyName(string companyName, bool includePersons)
+        public async Task<Company> GetByCompanyName(string companyName, bool includePeople)
         {
             IQueryable<Company> query = _context.Company;
-            if (includePersons)
+            if (includePeople)
             {
-                query = query.Include(c => c.Persons);
+                query = query.Include(c => c.People);
             }
             query = query.AsNoTracking().OrderBy(c => c.Id).Where(c => c.Name == companyName);
             return await query.FirstOrDefaultAsync();

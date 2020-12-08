@@ -19,15 +19,19 @@ namespace ProjetoFinal_API.Models
         [Required]
         public int PersonId { get; set; }
 
+        [NotMapped]
         public Person Person { get; set; }
 
         public IEnumerable<Person> People { get; set; }
 
-        [ForeignKey("Equipament")]
+        [ForeignKey("Equipment")]
         [Required]
-        public int EquipamentId { get; set; }
+        public int EquipmentId { get; set; }
 
-        public IEnumerable<Equipament> Equipaments { get; set; }
+        [NotMapped]
+        public Equipment Equipment { get; set; }
+
+        public IEnumerable<Equipment> Equipments { get; set; }
 
         [Column(TypeName = "VARCHAR(800)")]
         [Required]
@@ -36,12 +40,14 @@ namespace ProjetoFinal_API.Models
         [Column(TypeName = "VARCHAR(800)")]
         public string ServiceDescription { get; set; }
 
-        public Request(int id, char status, int personId, int equipamentId, string demand, string serviceDescription)
+        public Request() {}
+
+        public Request(int id, char status, int personId, int equipmentId, string demand, string serviceDescription)
         {
             this.Id = id;
             this.Status = status;
             this.PersonId = personId;
-            this.EquipamentId = equipamentId;
+            this.EquipmentId = equipmentId;
             this.Demand = demand;
             this.ServiceDescription = serviceDescription;
         }

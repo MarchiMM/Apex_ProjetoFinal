@@ -21,6 +21,8 @@ namespace ProjetoFinal_API.Models
 
         public DateTime ExpirationDate { get; set; }
 
+        public Taxation() {}
+
         public Taxation(int id, string taxDescription, double percentage, DateTime effectiveDate, DateTime expirationDate)
         {
             this.Id = id;
@@ -28,14 +30,6 @@ namespace ProjetoFinal_API.Models
             this.Percentage = percentage;
             this.EffectiveDate = effectiveDate;
             this.ExpirationDate = expirationDate;
-        }
-
-        public Taxation(int id, string taxDescription, double percentage, DateTime effectiveDate)
-        {
-            this.Id = id;
-            this.TaxDescription = taxDescription;
-            this.Percentage = percentage;
-            this.EffectiveDate = effectiveDate;
         }
     }
 }

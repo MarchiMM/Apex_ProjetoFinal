@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoFinal_API.Models
 {
-    public class Equipament
+    public class Equipment
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,7 +25,9 @@ namespace ProjetoFinal_API.Models
         [Required]
         public string SerialNumber { get; set; }
 
-        public Equipament(int id, string type, string brand, string model, string serialNumber)
+        public Equipment() {}
+
+        public Equipment(int id, string type, string brand, string model, string serialNumber)
         {
             this.Id = id;
             this.Type = type;

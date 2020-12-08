@@ -21,19 +21,20 @@ namespace ProjetoFinal_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Equipament",
+                name: "Request",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "VARCHAR(100)", nullable: false),
-                    Brand = table.Column<string>(type: "VARCHAR(40)", nullable: false),
-                    Model = table.Column<string>(type: "VARCHAR(100)", nullable: false),
-                    SerialNumber = table.Column<string>(type: "VARCHAR(100)", nullable: false)
+                    Status = table.Column<string>(type: "CHAR(1)", nullable: false),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    EquipmentId = table.Column<int>(type: "int", nullable: false),
+                    Demand = table.Column<string>(type: "VARCHAR(800)", nullable: false),
+                    ServiceDescription = table.Column<string>(type: "VARCHAR(800)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Equipament", x => x.Id);
+                    table.PrimaryKey("PK_Request", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,6 +54,29 @@ namespace ProjetoFinal_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Equipment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "VARCHAR(100)", nullable: false),
+                    Brand = table.Column<string>(type: "VARCHAR(40)", nullable: false),
+                    Model = table.Column<string>(type: "VARCHAR(100)", nullable: false),
+                    SerialNumber = table.Column<string>(type: "VARCHAR(100)", nullable: false),
+                    RequestId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Equipment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Equipment_Request_RequestId",
+                        column: x => x.RequestId,
+                        principalTable: "Request",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
                 {
@@ -66,92 +90,79 @@ namespace ProjetoFinal_API.Migrations
                     CompanyId = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "VARCHAR(16)", nullable: true),
-                    Email = table.Column<string>(type: "VARCHAR(60)", nullable: true)
+                    Email = table.Column<string>(type: "VARCHAR(60)", nullable: true),
+                    RequestId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Person", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Person_Company_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Company",
+                        name: "FK_Person_Request_RequestId",
+                        column: x => x.RequestId,
+                        principalTable: "Request",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Request",
+                name: "CompanyPerson",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<string>(type: "CHAR(1)", nullable: false),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
-                    EquipamentId = table.Column<int>(type: "int", nullable: false),
-                    Demand = table.Column<string>(type: "VARCHAR(800)", nullable: false),
-                    ServiceDescription = table.Column<string>(type: "VARCHAR(800)", nullable: true),
-                    TaxationId = table.Column<int>(type: "int", nullable: false)
+                    CompaniesId = table.Column<int>(type: "int", nullable: false),
+                    PeopleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Request", x => x.Id);
+                    table.PrimaryKey("PK_CompanyPerson", x => new { x.CompaniesId, x.PeopleId });
                     table.ForeignKey(
-                        name: "FK_Request_Equipament_EquipamentId",
-                        column: x => x.EquipamentId,
-                        principalTable: "Equipament",
+                        name: "FK_CompanyPerson_Company_CompaniesId",
+                        column: x => x.CompaniesId,
+                        principalTable: "Company",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Request_Person_PersonId",
-                        column: x => x.PersonId,
+                        name: "FK_CompanyPerson_Person_PeopleId",
+                        column: x => x.PeopleId,
                         principalTable: "Person",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Request_Taxation_TaxationId",
-                        column: x => x.TaxationId,
-                        principalTable: "Taxation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_CompanyId",
+                name: "IX_CompanyPerson_PeopleId",
+                table: "CompanyPerson",
+                column: "PeopleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Equipment_RequestId",
+                table: "Equipment",
+                column: "RequestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_RequestId",
                 table: "Person",
-                column: "CompanyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Request_EquipamentId",
-                table: "Request",
-                column: "EquipamentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Request_PersonId",
-                table: "Request",
-                column: "PersonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Request_TaxationId",
-                table: "Request",
-                column: "TaxationId");
+                column: "RequestId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Request");
+                name: "CompanyPerson");
 
             migrationBuilder.DropTable(
-                name: "Equipament");
-
-            migrationBuilder.DropTable(
-                name: "Person");
+                name: "Equipment");
 
             migrationBuilder.DropTable(
                 name: "Taxation");
 
             migrationBuilder.DropTable(
                 name: "Company");
+
+            migrationBuilder.DropTable(
+                name: "Person");
+
+            migrationBuilder.DropTable(
+                name: "Request");
         }
     }
 }

@@ -10,8 +10,8 @@ using ProjetoFinal_API.Data;
 namespace ProjetoFinal_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201127213945_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20201208010542_TestInformations")]
+    partial class TestInformations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace ProjetoFinal_API.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("CompanyPerson", b =>
+                {
+                    b.Property<int>("CompaniesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PeopleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CompaniesId", "PeopleId");
+
+                    b.HasIndex("PeopleId");
+
+                    b.ToTable("CompanyPerson");
+                });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Company", b =>
                 {
@@ -35,9 +50,16 @@ namespace ProjetoFinal_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Company");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Test"
+                        });
                 });
 
-            modelBuilder.Entity("ProjetoFinal_API.Models.Equipament", b =>
+            modelBuilder.Entity("ProjetoFinal_API.Models.Equipment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,6 +74,9 @@ namespace ProjetoFinal_API.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
 
+                    b.Property<int?>("RequestId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SerialNumber")
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
@@ -62,7 +87,19 @@ namespace ProjetoFinal_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Equipament");
+                    b.HasIndex("RequestId");
+
+                    b.ToTable("Equipment");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Brand = "HP",
+                            Model = "Ink Sak",
+                            SerialNumber = "BIASYRTCBO2U3809R2U38R",
+                            Type = "Impressora"
+                        });
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Person", b =>
@@ -99,15 +136,33 @@ namespace ProjetoFinal_API.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("VARCHAR(16)");
 
+                    b.Property<int?>("RequestId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("CHAR(1)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("RequestId");
 
                     b.ToTable("Person");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "casa do caraio",
+                            Cnpj = "",
+                            CompanyId = 1,
+                            Cpf = "12345678901",
+                            Email = "email@gmail.com",
+                            Name = "Thomas",
+                            PersonType = "P",
+                            PhoneNumber = "1242535",
+                            Type = "E"
+                        });
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Request", b =>
@@ -121,7 +176,7 @@ namespace ProjetoFinal_API.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(800)");
 
-                    b.Property<int>("EquipamentId")
+                    b.Property<int>("EquipmentId")
                         .HasColumnType("int");
 
                     b.Property<int>("PersonId")
@@ -134,18 +189,20 @@ namespace ProjetoFinal_API.Migrations
                         .IsRequired()
                         .HasColumnType("CHAR(1)");
 
-                    b.Property<int>("TaxationId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("EquipamentId");
-
-                    b.HasIndex("PersonId");
-
-                    b.HasIndex("TaxationId");
-
                     b.ToTable("Request");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Demand = "trocar a tinta",
+                            EquipmentId = 1,
+                            PersonId = 1,
+                            ServiceDescription = "tinta trocada - 2 pila",
+                            Status = "O"
+                        });
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Taxation", b =>
@@ -173,42 +230,40 @@ namespace ProjetoFinal_API.Migrations
                     b.ToTable("Taxation");
                 });
 
-            modelBuilder.Entity("ProjetoFinal_API.Models.Person", b =>
+            modelBuilder.Entity("CompanyPerson", b =>
                 {
-                    b.HasOne("ProjetoFinal_API.Models.Company", "Company")
+                    b.HasOne("ProjetoFinal_API.Models.Company", null)
                         .WithMany()
-                        .HasForeignKey("CompanyId")
+                        .HasForeignKey("CompaniesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Company");
+                    b.HasOne("ProjetoFinal_API.Models.Person", null)
+                        .WithMany()
+                        .HasForeignKey("PeopleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjetoFinal_API.Models.Equipment", b =>
+                {
+                    b.HasOne("ProjetoFinal_API.Models.Request", null)
+                        .WithMany("Equipments")
+                        .HasForeignKey("RequestId");
+                });
+
+            modelBuilder.Entity("ProjetoFinal_API.Models.Person", b =>
+                {
+                    b.HasOne("ProjetoFinal_API.Models.Request", null)
+                        .WithMany("People")
+                        .HasForeignKey("RequestId");
                 });
 
             modelBuilder.Entity("ProjetoFinal_API.Models.Request", b =>
                 {
-                    b.HasOne("ProjetoFinal_API.Models.Equipament", "Equipament")
-                        .WithMany()
-                        .HasForeignKey("EquipamentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Equipments");
 
-                    b.HasOne("ProjetoFinal_API.Models.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjetoFinal_API.Models.Taxation", "Taxation")
-                        .WithMany()
-                        .HasForeignKey("TaxationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Equipament");
-
-                    b.Navigation("Person");
-
-                    b.Navigation("Taxation");
+                    b.Navigation("People");
                 });
 #pragma warning restore 612, 618
         }
