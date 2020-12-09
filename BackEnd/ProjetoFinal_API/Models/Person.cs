@@ -72,5 +72,49 @@ namespace ProjetoFinal_API.Models
             this.PhoneNumber = phoneNumber;
             this.Email = email;
         }
+
+        public Person(
+            int id, 
+            char type, 
+            char personType, 
+            string name, 
+            string cpf,
+            string address,
+            string phoneNumber,
+            string email
+        )
+        {
+            this.Id = id;
+            this.Type = type;
+            this.PersonType = personType;
+            this.Name = name;
+            this.Cpf = cpf;
+            this.Address = address;
+            this.PhoneNumber = phoneNumber;
+            this.Email = email;
+        }
+
+        public Person(
+            int id, 
+            char type, 
+            char personType, 
+            string name, 
+            string cnpj,
+            int companyId,
+            string address,
+            string phoneNumber,
+            string email
+        )
+        {
+            this.Id = id;
+            this.Type = type;
+            this.PersonType = personType;
+            this.Name = name;
+            this.Cnpj = cnpj;
+            this.CompanyId = companyId;
+            this.Address = address;
+            this.PhoneNumber = phoneNumber;
+            this.Email = email;
+        }
     }
 }
