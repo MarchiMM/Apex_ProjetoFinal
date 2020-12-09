@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "5d2d2ae8-4ec0-49a8-a9a7-21aa7bf8d173",
+		"name": "Person",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"type\": \"E\",\r\n    \"personType\": \"P\",\r\n    \"name\": \"Thomas\",\r\n    \"cpf\": \"12345678901\",\r\n    \"cnpj\": \"\",\r\n    \"companyId\": 1,\r\n    \"company\": null,\r\n    \"companies\": null,\r\n    \"address\": \"casa do caraio\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"type\": \"E\",\r\n    \"personType\": \"P\",\r\n    \"name\": \"Thomas\",\r\n    \"cpf\": \"12345678901\",\r\n    \"cnpj\": \"\",\r\n    \"companyId\": 1,\r\n    \"company\": null,\r\n    \"companies\": null,\r\n    \"address\": \"casa do caraio\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/id=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"id=1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/type=c",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"type=c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByPersonType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/persontype=p",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"persontype=p"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/name=jonas",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"name=jonas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByCpf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/cpf=12345678901",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"cpf=12345678901"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByCnpj",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/cnpj=111111111111",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"cnpj=111111111111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByCompanyId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/companyid=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"companyid=1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByCompanyName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/companyname=test",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"companyname=test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Fortaleza Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/id=6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"id=6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6,\r\n    \"type\": \"C\",\r\n    \"personType\": \"L\",\r\n    \"name\": \"Calçados Alta\",\r\n    \"cpf\": \"\",\r\n    \"cnpj\": \"111111111112\",\r\n    \"companyId\": 2,\r\n    \"companies\": null,\r\n    \"address\": \"pqp\",\r\n    \"phoneNumber\": \"1242535\",\r\n    \"email\": \"email@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/person/id=6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"person",
+						"id=6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

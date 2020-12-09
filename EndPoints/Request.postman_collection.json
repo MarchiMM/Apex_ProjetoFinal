@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "09f29001-c533-42fe-baed-1aa0bae580ee",
+		"name": "Request",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"status\": \"O\",\r\n    \"personId\": 1,\r\n    \"person\": null,\r\n    \"equipmentId\": 1,\r\n    \"equipment\": null,\r\n    \"demand\": \"trocar a tinta\",\r\n    \"serviceDescription\": \"tinta trocada - 2 pila\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"status\": \"C\",\r\n    \"personId\": 1,\r\n    \"person\": null,\r\n    \"equipmentId\": 1,\r\n    \"equipment\": null,\r\n    \"demand\": \"trocar a tintaaaaa\",\r\n    \"serviceDescription\": \"tinta trocada - 2 pilaaaaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/id=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"id=2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByStatus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/status=o",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"status=o"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByPersonId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/personid=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"personid=1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByPersonName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/personname=thomas",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"personname=thomas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByEquipmentId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/equipmentid=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"equipmentid=1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByEquipmentType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/equipmenttype=impressora",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"equipmenttype=impressora"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByEquipmentBrand",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/equipmentbrand=hp",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"equipmentbrand=hp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByEquipmentModel",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/equipmentmodel=ink sak",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"equipmentmodel=ink sak"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByEquipmentSerialNumber",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TaxDescription\": \"Imposto sobre Serviço\",\r\n    \"Percentage\": 0.02,\r\n    \"ExpirationDate\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/taxation",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"taxation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"C\",\r\n    \"personId\": 1,\r\n    \"person\": null,\r\n    \"equipmentId\": 1,\r\n    \"equipment\": null,\r\n    \"demand\": \"efetuar manutenção na impressora\",\r\n    \"serviceDescription\": \"hora técnica - 125 reais\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"status\": \"C\",\r\n    \"personId\": 1,\r\n    \"person\": null,\r\n    \"equipmentId\": 1,\r\n    \"equipment\": null,\r\n    \"demand\": \"trocar a tintaaaaa\",\r\n    \"serviceDescription\": \"tinta trocada - 2 pilaaaaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/id=3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"id=3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"status\": \"C\",\r\n    \"personId\": 1,\r\n    \"person\": null,\r\n    \"equipmentId\": 1,\r\n    \"equipment\": null,\r\n    \"demand\": \"trocar a tintaaaaa\",\r\n    \"serviceDescription\": \"tinta trocada - 2 pilaaaaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/request/id=3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"request",
+						"id=3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
