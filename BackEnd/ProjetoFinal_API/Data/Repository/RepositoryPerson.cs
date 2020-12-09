@@ -22,12 +22,16 @@ namespace ProjetoFinal_API.Data.Repository
             return await query.ToArrayAsync();
         }
 
-        public async Task<Person> GetByCnpjAsync(string cnpj, bool includeCompany)
+        public async Task<Person> GetByCnpjAsync(string cnpj, bool includeCompany, bool includeRequests)
         {
             IQueryable<Person> query = _context.Person;
             if (includeCompany)
             {
                 query = query.Include(p => p.Company);
+            }
+            if (includeRequests)
+            {
+                query = query.Include(p => p.Requests);
             }
             query = query.AsNoTracking().OrderBy(p => p.Id).Where(p => p.Cnpj == cnpj);
             return await query.FirstOrDefaultAsync();
@@ -43,7 +47,7 @@ namespace ProjetoFinal_API.Data.Repository
         public async Task<Person[]> GetByCompanyNameAsync(string companyName)
         {
             IQueryable<Person> query = _context.Person;
-            query = query.AsNoTracking().OrderBy(p => p.Id).Where(p => p.Companies.Any(c => c.Name == companyName));
+            query = query.AsNoTracking().OrderBy(p => p.Id).Where(p => p.Company.Name == companyName);
             return await query.ToArrayAsync();
         }
 
@@ -54,23 +58,31 @@ namespace ProjetoFinal_API.Data.Repository
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Person> GetByIdAsync(int personId, bool includeCompany)
+        public async Task<Person> GetByIdAsync(int personId, bool includeCompany, bool includeRequests)
         {
             IQueryable<Person> query = _context.Person;
             if (includeCompany)
             {
                 query = query.Include(p => p.Company);
             }
+            if (includeRequests)
+            {
+                query = query.Include(p => p.Requests);
+            }
             query = query.AsNoTracking().OrderBy(p => p.Id).Where(p => p.Id == personId);
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Person[]> GetByNameAsync(string name, bool includeCompany)
+        public async Task<Person[]> GetByNameAsync(string name, bool includeCompany, bool includeRequests)
         {
             IQueryable<Person> query = _context.Person;
             if (includeCompany)
             {
                 query = query.Include(p => p.Company);
+            }
+            if (includeRequests)
+            {
+                query = query.Include(p => p.Requests);
             }
             query = query.AsNoTracking().OrderBy(p => p.Id).Where(p => p.Name == name);
             return await query.ToArrayAsync();

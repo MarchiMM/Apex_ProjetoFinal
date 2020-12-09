@@ -211,11 +211,12 @@ namespace ProjetoFinal_API.Controllers
         }
 
         [HttpDelete("id={requestId}")]
-        public async Task<IActionResult> Delete(int requestId, Request request)
+        public async Task<IActionResult> Delete(int requestId)
         {
             try
             {
-                if (await _repositoryRequest.GetByIdAsync(requestId, includePerson: false) == null)
+                var request = await _repositoryRequest.GetByIdAsync(requestId, includePerson: false);
+                if (request == null)
                 {
                     return NotFound();
                 }

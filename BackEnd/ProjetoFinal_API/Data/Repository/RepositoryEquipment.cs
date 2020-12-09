@@ -29,9 +29,13 @@ namespace ProjetoFinal_API.Data.Repository
             return await query.ToArrayAsync();
         }
 
-        public async Task<Equipment> GetByIdAsync(int equipmentId)
+        public async Task<Equipment> GetByIdAsync(int equipmentId, bool includeRequests)
         {
             IQueryable<Equipment> query = _context.Equipment;
+            if (includeRequests)
+            {
+                query = query.Include(e => e.Requests);
+            }
             query = query.AsNoTracking().OrderBy(e => e.Id).Where(e => e.Id == equipmentId);
             return await query.FirstOrDefaultAsync();
         }
@@ -43,9 +47,13 @@ namespace ProjetoFinal_API.Data.Repository
             return await query.ToArrayAsync();
         }
 
-        public async Task<Equipment> GetBySerialNumberAsync(string serialNumber)
+        public async Task<Equipment> GetBySerialNumberAsync(string serialNumber, bool includeRequests)
         {
             IQueryable<Equipment> query = _context.Equipment;
+            if (includeRequests)
+            {
+                query = query.Include(e => e.Requests);
+            }
             query = query.AsNoTracking().OrderBy(e => e.Id).Where(e => e.SerialNumber == serialNumber);
             return await query.FirstOrDefaultAsync();
         }

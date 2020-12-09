@@ -124,3 +124,6 @@ C:\Users\Apex02\Desktop\Matheus MMoro\Apex_ProjetoFinal\BackEnd\ProjetoFinal_API
 C:\Users\Apex02\Desktop\Matheus MMoro\Apex_ProjetoFinal\BackEnd\ProjetoFinal_API\obj\Debug\netcoreapp3.1\ProjetoFinal_API.dll
 C:\Users\Apex02\Desktop\Matheus MMoro\Apex_ProjetoFinal\BackEnd\ProjetoFinal_API\obj\Debug\netcoreapp3.1\ProjetoFinal_API.pdb
 C:\Users\Apex02\Desktop\Matheus MMoro\Apex_ProjetoFinal\BackEnd\ProjetoFinal_API\obj\Debug\netcoreapp3.1\ProjetoFinal_API.genruntimeconfig.cache
+C:\Users\Apex02\Desktop\Matheus MMoro\Apex_ProjetoFinal\BackEnd\ProjetoFinal_API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Apex02\Desktop\Matheus MMoro\Apex_ProjetoFinal\BackEnd\ProjetoFinal_API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Apex02\Desktop\Matheus MMoro\Apex_ProjetoFinal\BackEnd\ProjetoFinal_API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

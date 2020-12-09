@@ -19,19 +19,13 @@ namespace ProjetoFinal_API.Models
         [Required]
         public int PersonId { get; set; }
 
-        [NotMapped]
         public Person Person { get; set; }
-
-        public IEnumerable<Person> People { get; set; }
 
         [ForeignKey("Equipment")]
         [Required]
         public int EquipmentId { get; set; }
 
-        [NotMapped]
         public Equipment Equipment { get; set; }
-
-        public IEnumerable<Equipment> Equipments { get; set; }
 
         [Column(TypeName = "VARCHAR(800)")]
         [Required]

@@ -31,10 +31,7 @@ namespace ProjetoFinal_API.Models
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
 
-        [NotMapped]
         public Company Company { get; set; }
-
-        public IEnumerable<Company> Companies { get; set; }
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required]
@@ -45,6 +42,8 @@ namespace ProjetoFinal_API.Models
 
         [Column(TypeName = "VARCHAR(60)")]
         public string Email { get; set; }
+
+        public IEnumerable<Request> Requests { get; set; }
 
         public Person() {}
 

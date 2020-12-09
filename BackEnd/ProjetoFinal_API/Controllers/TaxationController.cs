@@ -90,11 +90,12 @@ namespace ProjetoFinal_API.Controllers
         }
 
         [HttpDelete("id={taxationId}")]
-        public async Task<IActionResult> Delete(int taxationId, Taxation taxation)
+        public async Task<IActionResult> Delete(int taxationId)
         {
             try
             {
-                if (await _repositoryTaxation.GetByIdAsync(taxationId) == null)
+                var taxation = await _repositoryTaxation.GetByIdAsync(taxationId);
+                if (taxation == null)
                 {
                     return NotFound();
                 }

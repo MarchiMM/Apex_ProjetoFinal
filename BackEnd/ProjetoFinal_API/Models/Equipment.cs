@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,6 +25,8 @@ namespace ProjetoFinal_API.Models
         [Column(TypeName = "VARCHAR(100)")]
         [Required]
         public string SerialNumber { get; set; }
+
+        public IEnumerable<Request> Requests { get; set; }
 
         public Equipment() {}
 

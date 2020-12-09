@@ -40,7 +40,7 @@ namespace ProjetoFinal_API.Controllers
             try
             {
                 return Ok(
-                    await _repositoryEquipment.GetByIdAsync(equipmentId)
+                    await _repositoryEquipment.GetByIdAsync(equipmentId, includeRequests: true)
                 );
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace ProjetoFinal_API.Controllers
             try
             {
                 return Ok(
-                    await _repositoryEquipment.GetBySerialNumberAsync(equipmentSerialNumber)
+                    await _repositoryEquipment.GetBySerialNumberAsync(equipmentSerialNumber, includeRequests: true)
                 );
             }
             catch (Exception ex)
@@ -132,7 +132,7 @@ namespace ProjetoFinal_API.Controllers
         {
             try
             {
-                if (await _repositoryEquipment.GetByIdAsync(equipmentId) == null)
+                if (await _repositoryEquipment.GetByIdAsync(equipmentId, includeRequests: false) == null)
                 {
                     return NotFound();
                 }
@@ -150,11 +150,12 @@ namespace ProjetoFinal_API.Controllers
         }
 
         [HttpDelete("id={equipmentId}")]
-        public async Task<IActionResult> Delete(int equipmentId, Equipment equipment)
+        public async Task<IActionResult> Delete(int equipmentId)
         {
             try
             {
-                if (await _repositoryEquipment.GetByIdAsync(equipmentId) == null)
+                var equipment = await _repositoryEquipment.GetByIdAsync(equipmentId, includeRequests: false);
+                if (equipment == null)
                 {
                     return NotFound();
                 }

@@ -25,35 +25,35 @@ namespace ProjetoFinal_API.Data.Repository
         public async Task<Request[]> GetByEquipmentBrandAsync(string equipmentBrand)
         {
             IQueryable<Request> query = _context.Request;
-            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipments.Any(e => e.Brand == equipmentBrand));
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipment.Brand == equipmentBrand);
             return await query.ToArrayAsync();
         }
 
         public async Task<Request[]> GetByEquipmentIdAsync(int equipmentId)
         {
             IQueryable<Request> query = _context.Request;
-            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipments.Any(e => e.Id == equipmentId));
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipment.Id == equipmentId);
             return await query.ToArrayAsync();
         }
 
         public async Task<Request[]> GetByEquipmentModelAsync(string equipmentModel)
         {
             IQueryable<Request> query = _context.Request;
-            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipments.Any(e => e.Model == equipmentModel));
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipment.Model == equipmentModel);
             return await query.ToArrayAsync();
         }
 
         public async Task<Request[]> GetByEquipmentSerialNumberlAsync(string equipmentSerialNumber)
         {
             IQueryable<Request> query = _context.Request;
-            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipments.Any(e => e.SerialNumber == equipmentSerialNumber));
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipment.SerialNumber == equipmentSerialNumber);
             return await query.ToArrayAsync();
         }
 
         public async Task<Request[]> GetByEquipmentTypeAsync(string equipmentType)
         {
             IQueryable<Request> query = _context.Request;
-            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipments.Any(e => e.Type == equipmentType));
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Equipment.Type == equipmentType);
             return await query.ToArrayAsync();
         }
 
@@ -71,14 +71,14 @@ namespace ProjetoFinal_API.Data.Repository
         public async Task<Request[]> GetByPersonIdAsync(int personId)
         {
             IQueryable<Request> query = _context.Request;
-            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.People.Any(p => p.Id == personId));
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Person.Id == personId);
             return await query.ToArrayAsync();
         }
 
         public async Task<Request[]> GetByPersonNameAsync(string personName)
         {
             IQueryable<Request> query = _context.Request;
-            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.People.Any(p => p.Name == personName));
+            query = query.AsNoTracking().OrderBy(r => r.Id).Where(r => r.Person.Name == personName);
             return await query.ToArrayAsync();
         }
 

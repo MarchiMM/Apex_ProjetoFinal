@@ -105,11 +105,12 @@ namespace ProjetoFinal_API.Controllers
         }
 
         [HttpDelete("id={companyId}")]
-        public async Task<IActionResult> Delete(int companyId, Company company)
+        public async Task<IActionResult> Delete(int companyId)
         {
             try
             {
-                if (await _repositoryCompany.GetByIdAsync(companyId, includePeople: false) == null)
+                var company = await _repositoryCompany.GetByIdAsync(companyId, includePeople: false);
+                if (company == null)
                 {
                     return NotFound();
                 }

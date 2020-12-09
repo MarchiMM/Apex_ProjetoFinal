@@ -40,7 +40,7 @@ namespace ProjetoFinal_API.Controllers
             try
             {
                 return Ok(
-                    await _repositoryPerson.GetByIdAsync(personId, includeCompany: true)
+                    await _repositoryPerson.GetByIdAsync(personId, includeCompany: true, includeRequests: true)
                 );
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace ProjetoFinal_API.Controllers
             try
             {
                 return Ok(
-                    await _repositoryPerson.GetByNameAsync(personName, includeCompany: true)
+                    await _repositoryPerson.GetByNameAsync(personName, includeCompany: true, includeRequests: true)
                 );
             }
             catch (Exception ex)
@@ -115,7 +115,7 @@ namespace ProjetoFinal_API.Controllers
             try
             {
                 return Ok(
-                    await _repositoryPerson.GetByCnpjAsync(personCnpj, includeCompany: true)
+                    await _repositoryPerson.GetByCnpjAsync(personCnpj, includeCompany: true, includeRequests: true)
                 );
             }
             catch (Exception ex)
@@ -177,7 +177,7 @@ namespace ProjetoFinal_API.Controllers
         {
             try
             {
-                if (await _repositoryPerson.GetByIdAsync(personId, includeCompany: false) == null)
+                if (await _repositoryPerson.GetByIdAsync(personId, includeCompany: false, includeRequests: false) == null)
                 {
                     return NotFound();
                 }
@@ -195,11 +195,12 @@ namespace ProjetoFinal_API.Controllers
         }
 
         [HttpDelete("id={personId}")]
-        public async Task<IActionResult> Delete(int personId, Person person)
+        public async Task<IActionResult> Delete(int personId)
         {
             try
             {
-                if (await _repositoryPerson.GetByIdAsync(personId, includeCompany: false) == null)
+                var person = await _repositoryPerson.GetByIdAsync(personId, includeCompany: false, includeRequests: false);
+                if (person == null)
                 {
                     return NotFound();
                 }

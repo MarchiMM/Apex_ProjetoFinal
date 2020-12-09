@@ -14,9 +14,6 @@ namespace ProjetoFinal_API.Models
         [Required]
         public string Name { get; set; }
 
-        [NotMapped]
-        public Person Person { get; set; }
-
         public IEnumerable<Person> People { get; set; }
 
         public Company() {}

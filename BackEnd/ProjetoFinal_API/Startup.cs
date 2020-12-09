@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using ProjetoFinal_API.Data;
 using ProjetoFinal_API.Data.Repository;
 using ProjetoFinal_API.Data.Repository.Interfaces;
@@ -36,6 +37,12 @@ namespace ProjetoFinal_API
                     Configuration.GetConnectionString("Connection")
                 )
             );
+
+            services.AddControllers()
+                    .AddNewtonsoftJson(
+                        opt => opt.SerializerSettings.ReferenceLoopHandling = 
+                            ReferenceLoopHandling.Ignore
+                    );
 
             services.AddScoped<IRepository, RepositoryBase>();
             services.AddScoped<IRepositoryCompany, RepositoryCompany>();

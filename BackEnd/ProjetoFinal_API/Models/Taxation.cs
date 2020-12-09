@@ -17,9 +17,9 @@ namespace ProjetoFinal_API.Models
         [Required]
         public double Percentage { get; set; }
 
-        public DateTime EffectiveDate { get; set; }
+        public DateTime? EffectiveDate { get; set; }
 
-        public DateTime ExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
 
         public Taxation() {}
 
