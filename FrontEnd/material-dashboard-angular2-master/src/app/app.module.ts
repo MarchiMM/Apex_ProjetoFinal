@@ -10,23 +10,15 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
 import {
   AgmCoreModule
 } from '@agm/core';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { PeopleComponent } from './people/people.component';
 import { TaxationsComponent } from './taxations/taxations.component';
 import { EquipmentsComponent } from './equipments/equipments.component';
 import { RequestsComponent } from './requests/requests.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 @NgModule({
   imports: [
@@ -48,8 +40,7 @@ import { RequestsComponent } from './requests/requests.component';
     PeopleComponent,
     TaxationsComponent,
     EquipmentsComponent,
-    RequestsComponent,
-
+    RequestsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
