@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestsComponent implements OnInit {
 
+  public selectedRequest: Request = new Request();
+
   constructor() { }
 
   ngOnInit(): void {
