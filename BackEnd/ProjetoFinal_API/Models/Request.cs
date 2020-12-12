@@ -34,6 +34,10 @@ namespace ProjetoFinal_API.Models
         [Column(TypeName = "VARCHAR(800)")]
         public string ServiceDescription { get; set; }
 
+        public double Value { get; set; }
+
+        public IEnumerable<RequestTaxation> RequestTaxations { get; set; }
+
         public Request() {}
 
         public Request(int id, char status, int personId, int equipmentId, string demand, string serviceDescription)
