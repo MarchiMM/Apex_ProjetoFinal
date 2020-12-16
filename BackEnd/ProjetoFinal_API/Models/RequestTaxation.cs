@@ -19,6 +19,8 @@ namespace ProjetoFinal_API.Models
 
         public Taxation Taxation { get; set; }
 
+        public RequestTaxation() {}
+
         public RequestTaxation(int requestId, int taxationId)
         {
             this.RequestId = requestId;

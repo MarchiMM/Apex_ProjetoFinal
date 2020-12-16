@@ -146,7 +146,7 @@
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/5.0.0": {
+      "Microsoft.EntityFrameworkCore.Analyzers/5.0.1": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -1678,17 +1678,17 @@
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/5.0.0": {
-      "sha512": "l1c/1ge8ymXgLqtstTyX3PZOLRuFo1jn0FQ9H4ag3Bwz70KTMyEOXwkKBZZ1gDlCibETrooflMis8wvvXFh5YQ==",
+    "Microsoft.EntityFrameworkCore.Analyzers/5.0.1": {
+      "sha512": "3WjoY8JlB7m/VApD5A4JlntFLGV2C1qOV9fiPZQNBwlNnNAVZemDVZAksN1yBVMoPqw87VaogbP5sxgptCwTFA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/5.0.0",
+      "path": "microsoft.entityframeworkcore.analyzers/5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.5.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.5.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
@@ -5496,26 +5496,26 @@
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.7",
       "Microsoft.EntityFrameworkCore >= 5.0.0",
-      "Microsoft.EntityFrameworkCore.Analyzers >= 5.0.0",
+      "Microsoft.EntityFrameworkCore.Analyzers >= 5.0.1",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Apex02\\.nuget\\packages\\": {}
+    "C:\\Users\\matmm\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
+      "projectUniqueName": "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
       "projectName": "ProjetoFinal_API",
-      "projectPath": "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
-      "packagesPath": "C:\\Users\\Apex02\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\obj\\",
+      "projectPath": "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
+      "packagesPath": "C:\\Users\\matmm\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Apex02\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matmm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5549,7 +5549,7 @@
           },
           "Microsoft.EntityFrameworkCore.Analyzers": {
             "target": "Package",
-            "version": "[5.0.0, )"
+            "version": "[5.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -5586,7 +5586,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

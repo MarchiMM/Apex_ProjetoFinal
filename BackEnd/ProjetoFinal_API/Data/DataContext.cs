@@ -11,6 +11,7 @@ namespace ProjetoFinal_API.Data
         public DbSet<Person> Person { get; set; }
         public DbSet<Request> Request { get; set; }
         public DbSet<Taxation> Taxation { get; set; }
+        public DbSet<RequestTaxation> RequestTaxation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

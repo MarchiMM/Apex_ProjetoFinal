@@ -14,12 +14,5 @@ namespace ProjetoFinal_API.Data.Repository.Interfaces
         Task<Person> GetByCnpjAsync(string cpf, bool includeCompany, bool includeRequests);
         Task<Person[]> GetByCompanyIdAsync(int companyId);
         Task<Person[]> GetByCompanyNameAsync(string companyName);
-        // tentar utilizar funções do Repository Company
-        /*
-            public IEnumerable<Person> GetByCompanyNameAsync(string name)
-            {
-                return Company.GetByName(name);
-            }
-        */
     }
 }

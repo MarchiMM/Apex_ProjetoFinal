@@ -40,6 +40,17 @@ namespace ProjetoFinal_API.Models
 
         public Request() {}
 
+        public Request(int id, char status, int personId, int equipmentId, string demand, string serviceDescription, double value)
+        {
+            this.Id = id;
+            this.Status = status;
+            this.PersonId = personId;
+            this.EquipmentId = equipmentId;
+            this.Demand = demand;
+            this.ServiceDescription = serviceDescription;
+            this.Value = value;
+        }
+
         public Request(int id, char status, int personId, int equipmentId, string demand, string serviceDescription)
         {
             this.Id = id;
