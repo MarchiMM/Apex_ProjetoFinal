@@ -36,7 +36,7 @@ namespace ProjetoFinal_API.Models
 
         public double Value { get; set; }
 
-        public IEnumerable<RequestTaxation> RequestTaxations { get; set; }
+        public IEnumerable<int> TaxationIdList { get; set; }
 
         public Request() {}
 

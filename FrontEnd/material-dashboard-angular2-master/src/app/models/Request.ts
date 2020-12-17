@@ -12,6 +12,7 @@ export class Request {
     this.equipment = new Equipment();
     this.demand = '';
     this.serviceDescription = '';
+    this.value = 0;
   }
 
   id: number;
@@ -22,4 +23,5 @@ export class Request {
   equipment: Equipment;
   demand: string;
   serviceDescription: string;
+  value: number;
 }

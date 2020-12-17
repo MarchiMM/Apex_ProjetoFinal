@@ -1,6 +1,8 @@
+using System.Linq;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoFinal_API.Data.Interfaces;
 using ProjetoFinal_API.Data.Repository.Interfaces;
 using ProjetoFinal_API.Models;
 
@@ -13,11 +15,13 @@ namespace ProjetoFinal_API.Controllers
     {
         private readonly IRepository _repository;
         private readonly IRepositoryRequest _repositoryRequest;
+        private readonly IRequestTaxation _requestTaxation;
 
-        public RequestController(IRepository repository, IRepositoryRequest repositoryRequest)
+        public RequestController(IRepository repository, IRepositoryRequest repositoryRequest, IRequestTaxation requestTaxation)
         {
             this._repository = repository;
             this._repositoryRequest = repositoryRequest;
+            this._requestTaxation = requestTaxation;
         }
 
         [HttpGet]
@@ -175,6 +179,7 @@ namespace ProjetoFinal_API.Controllers
         {
             try
             {
+                request.Status = 'O';
                 _repository.Add(request);
                 if (await this._repository.SaveChangesAsync())
                 {
@@ -196,6 +201,14 @@ namespace ProjetoFinal_API.Controllers
                 if (await _repositoryRequest.GetByIdAsync(requestId, includePerson: false) == null)
                 {
                     return NotFound();
+                }
+                if (request.TaxationIdList.Any())
+                {
+                    _requestTaxation.SaveByListId(request.TaxationIdList, requestId);
+                }
+                if (request.Value != 0)
+                {
+                    request.Status = 'C';
                 }
                 _repository.Update(request);
                 if (await this._repository.SaveChangesAsync())
