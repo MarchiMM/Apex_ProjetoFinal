@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj": {}
+    "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj": {
+    "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
+        "projectUniqueName": "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
         "projectName": "ProjetoFinal_API",
-        "projectPath": "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
-        "packagesPath": "C:\\Users\\Apex02\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Apex02\\Desktop\\Matheus MMoro\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\obj\\",
+        "projectPath": "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\ProjetoFinal_API.csproj",
+        "packagesPath": "C:\\Users\\matmm\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\matmm\\Desktop\\Apex_ProjetoFinal\\BackEnd\\ProjetoFinal_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Apex02\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\matmm\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
